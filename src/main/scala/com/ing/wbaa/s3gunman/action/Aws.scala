@@ -1,4 +1,4 @@
-package com.ing.wbaa.s3gunman.request
+package com.ing.wbaa.s3gunman.action
 
 import com.amazonaws.auth.{AWSCredentials, AWSStaticCredentialsProvider, BasicSessionCredentials}
 import com.amazonaws.client.builder.AwsClientBuilder

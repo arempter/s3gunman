@@ -1,6 +1,5 @@
 package com.ing.wbaa.s3gunman.protocol
 
-import akka.actor.ActorSystem
 import io.gatling.core.CoreComponents
 import io.gatling.core.config.GatlingConfiguration
 import io.gatling.core.protocol.{Protocol, ProtocolKey}
@@ -13,7 +12,7 @@ object S3Protocol {
   def apply(awsAccessKey: String, awsSecretKey: String, awsSessionToken: String, endpoint: String, region: String, bucket: String): S3Protocol =
     new S3Protocol(awsAccessKey, awsSecretKey, awsSessionToken, endpoint, region, bucket)
 
-  val s3ProtocolKey = new ProtocolKey {
+  val s3ProtocolKey = new ProtocolKey[S3Protocol, S3Components] {
 
     type Protocol = S3Protocol
     type Components = S3Components
@@ -22,6 +21,7 @@ object S3Protocol {
 
     override def defaultProtocolValue(configuration: GatlingConfiguration): S3Protocol = throw new Exception("no default protocol vaule")
 
-    override def newComponents(system: ActorSystem, coreComponents: CoreComponents): S3Protocol => S3Components = { protocol => S3Components(protocol) }
+    override def newComponents(coreComponents: CoreComponents): S3Protocol => S3Components = { protocol => S3Components(protocol) }
+
   }
 }

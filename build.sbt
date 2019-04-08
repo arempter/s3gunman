@@ -4,7 +4,7 @@ version := "0.1"
 
 scalaVersion := "2.12.8"
 
-val gatlingVer = "2.3.1"
+val gatlingVer = "3.0.3"
 
 libraryDependencies ++= Seq(
   "io.gatling" % "gatling-test-framework" % gatlingVer,

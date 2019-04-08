@@ -1,4 +1,4 @@
-package com.ing.wbaa.s3gunman.request
+package com.ing.wbaa.s3gunman.action
 
 import com.ing.wbaa.s3gunman.protocol.S3Protocol
 import io.gatling.core.action.Action
@@ -6,7 +6,7 @@ import io.gatling.core.action.builder.ActionBuilder
 import io.gatling.core.protocol.ProtocolComponentsRegistry
 import io.gatling.core.structure.ScenarioContext
 
-class DeleteActionBuilder extends ActionBuilder {
+class PutActionBuilder extends ActionBuilder {
   private def components(protocolComponentsRegistry: ProtocolComponentsRegistry) =
     protocolComponentsRegistry.components(S3Protocol.s3ProtocolKey)
 
@@ -14,7 +14,7 @@ class DeleteActionBuilder extends ActionBuilder {
     import ctx._
     val statsEngine = coreComponents.statsEngine
     val s3Components = components(protocolComponentsRegistry)
-    new DeleteAction(s3Components.protocol, statsEngine, next)
+    new PutAction(s3Components.protocol, statsEngine, next)
   }
 
 }

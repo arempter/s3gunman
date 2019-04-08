@@ -1,7 +1,7 @@
 package com.ing.wbaa.s3gunman.protocol
 
-case class S3ProtocolBuilder(awsAccessKey: String, awsSecretKey: String, awsSessionToken: String, endpoint: String, region: String, bucket: String) {
+case class S3ProtocolBuilder(endpoint: String, region: String, bucket: String, prefix: String, file4upload: String) {
 
-  def build = S3Protocol(awsAccessKey, awsSecretKey, awsSessionToken, endpoint, region, bucket)
+  def build = S3Protocol(endpoint, region, bucket, prefix, file4upload)
 
 }

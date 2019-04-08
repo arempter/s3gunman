@@ -13,10 +13,10 @@ class testSimulation extends Simulation {
 
   val s3Protocol = S3Protocol(awsEndpoint, awsRegion, awsBucket, awsPath, file4Upload)
   val s3upload = scenario("Test AWS upload").exec(new PutActionBuilder)
-  val s3MultiUpload = scenario("Test AWS multipart delete").exec(new MultipartUploadActionBuilder)
+  val s3MultiUpload = scenario("Test AWS multipart upload").exec(new MultipartUploadActionBuilder)
   val s3delete = scenario("Test AWS delete").exec(new DeleteActionBuilder)
 
-  if (singlePutEnabled) {
+  if (singlePutEnabled && !multipartEnabled) {
     setUp(
       s3upload.inject(rampUsers(noOfUsers) during (testDuration seconds)).protocols(s3Protocol),
       s3delete.inject(rampUsers(noOfUsers - 2) during (testDuration + 10 seconds)).protocols(s3Protocol)

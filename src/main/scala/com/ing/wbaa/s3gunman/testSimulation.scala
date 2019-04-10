@@ -35,7 +35,7 @@ class testSimulation extends Simulation {
         s3MultiUpload.inject(
           rampUsers(noOfUsers) during (testDuration seconds),
           nothingFor(20),
-          constantUsersPerSec(noOfUsers / 2) during (testDuration)).protocols(s3Protocol),
+          constantUsersPerSec(noOfUsers / 4) during (testDuration)).protocols(s3Protocol),
         s3delete.inject(nothingFor(10), rampUsers(noOfUsers - 2) during (testDuration + 10 seconds)).protocols(s3Protocol)
       )
     } else {

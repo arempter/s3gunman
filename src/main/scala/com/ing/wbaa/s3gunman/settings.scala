@@ -17,4 +17,6 @@ object gatlingScenarioSettings {
   val file4Upload = conf.getString("file4Upload")
   val singlePutEnabled = conf.getBoolean("singlePutEnabled")
   val multipartEnabled = conf.getBoolean("multipartEnabled")
+  val multipartFlat = conf.getBoolean("multipartFlat")
+  val multipartMixed = conf.getBoolean("multipartMixed")
 }

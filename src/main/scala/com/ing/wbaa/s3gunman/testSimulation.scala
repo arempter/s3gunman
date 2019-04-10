@@ -18,14 +18,32 @@ class testSimulation extends Simulation {
 
   if (singlePutEnabled && !multipartEnabled) {
     setUp(
-      s3upload.inject(rampUsers(noOfUsers) during (testDuration seconds)).protocols(s3Protocol),
-      s3delete.inject(rampUsers(noOfUsers - 2) during (testDuration + 10 seconds)).protocols(s3Protocol)
+      s3upload.inject(
+        rampUsers(noOfUsers) during (testDuration seconds),
+        nothingFor(20),
+        constantUsersPerSec(noOfUsers / 2) during (testDuration / 2)).protocols(s3Protocol),
+      s3delete.inject(nothingFor(10), rampUsers(noOfUsers - 2) during (testDuration + 10 seconds)).protocols(s3Protocol)
     )
   } else if (multipartEnabled && !file4Upload.isEmpty) {
-    setUp(
-      s3MultiUpload.inject(rampUsers(noOfUsers) during (testDuration seconds)).protocols(s3Protocol),
-      s3delete.inject(rampUsers(noOfUsers - 2) during (testDuration + 10 seconds)).protocols(s3Protocol)
-    )
+    if (multipartFlat && !multipartMixed) {
+      setUp(
+        s3MultiUpload.inject(constantUsersPerSec(noOfUsers) during (testDuration)).protocols(s3Protocol),
+        s3delete.inject(nothingFor(10), rampUsers(noOfUsers - 2) during (testDuration + 10 seconds)).protocols(s3Protocol)
+      )
+    } else if (multipartMixed && !multipartFlat) {
+      setUp(
+        s3MultiUpload.inject(
+          rampUsers(noOfUsers) during (testDuration seconds),
+          nothingFor(20),
+          constantUsersPerSec(noOfUsers / 2) during (testDuration)).protocols(s3Protocol),
+        s3delete.inject(nothingFor(10), rampUsers(noOfUsers - 2) during (testDuration + 10 seconds)).protocols(s3Protocol)
+      )
+    } else {
+      setUp(
+        s3MultiUpload.inject(rampUsers(noOfUsers) during (testDuration seconds)).protocols(s3Protocol),
+        s3delete.inject(nothingFor(10), rampUsers(noOfUsers - 2) during (testDuration + 10 seconds)).protocols(s3Protocol)
+      )
+    }
   }
 
 }

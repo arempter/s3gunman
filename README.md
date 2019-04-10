@@ -26,6 +26,18 @@ export GATLING_DURATION=20
 export GATLING_NO_OF_USERS=4
 ```
 
+Note: GATLING_MULTIPART_ENABLED and GATLING_SINGLE_UPLOAD_ENABLED are mutually exclusive
+
+Other scenario settings for GATLING_MULTIPART_ENABLED=true
+```
+
+GATLING_MULTIPART_FLAT=true - runs constantUsersPerSec during GATLING_DURATION
+GATLING_MULTIPART_MIXED=true - runs rampUsers during GATLING_DURATION, then nothingFor 20 seconds, 
+then constantUsersPerSec / 2, during GATLING_DURATION
+
+Default (if both false) - runs rampUsers during GATLING_DURATION
+```
+
 ## Run
 
 1. build zip package

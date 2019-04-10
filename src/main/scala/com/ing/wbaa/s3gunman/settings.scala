@@ -19,4 +19,5 @@ object gatlingScenarioSettings {
   val multipartEnabled = conf.getBoolean("multipartEnabled")
   val multipartFlat = conf.getBoolean("multipartFlat")
   val multipartMixed = conf.getBoolean("multipartMixed")
+  val repeatScenario = conf.getInt("repeat")
 }

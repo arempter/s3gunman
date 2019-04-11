@@ -38,6 +38,11 @@ then constantUsersPerSec / 4, during GATLING_DURATION
 Default (if both false) - runs rampUsers during GATLING_DURATION
 ```
 
+Scenario for read
+```
+GATLING_MULTIPART_DOWNLOAD=true - runs rampUsers during GATLING_DURATION
+```
+
 ## Run
 
 1. build zip package

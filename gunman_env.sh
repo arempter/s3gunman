@@ -1,11 +1,10 @@
-#!/bin/bash
 export S3_ENDPOINT=http://localhost:8010
 export S3_PREFIX=subfolder
 export S3_BUCKET=user
-
 export GATLING_MULTIPART_ENABLED=true
 export GATLING_MULTIPART_FLAT=false
 export GATLING_MULTIPART_MIXED=false
+export GATLING_MULTIPART_DOWNLOAD=false
 export GATLING_SINGLE_UPLOAD_ENABLED=false
 export GATLING_FILE_4_UPLOAD=/tmp/file20M.dd
 export GATLING_DURATION=20
